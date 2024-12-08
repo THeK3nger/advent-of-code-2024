@@ -33,6 +33,10 @@
     ((grid row) col)
     nil))
 
+(defn set-cell [grid row col value]
+  (if (in-grid? grid row col)
+    (set ((grid row) col) value)))
+
 (defn neighbors [grid row col]
   (seq [r :range-to [(dec row) (inc row)]
         c :range-to [(dec col) (inc col)]
@@ -55,3 +59,7 @@
 (defn range-positions [grid]
   (seq [r :range-to [0 (length grid)]
         c :range-to [0 (length (grid 0))]] [r c]))
+
+(defn grid-print [grid]
+  (each row grid
+    (apply print row)))
